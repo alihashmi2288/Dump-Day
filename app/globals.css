@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+:root {
+  /* Core surfaces & text (Light: warm paper and daylight) */
+  --color-bg: #FAF7F2;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2430;
+  --color-muted: #6B7280;
+  --color-divider: #ECE7DF;
+  --color-primary: #4F6BED;
+  --color-on-primary: #FFFFFF;
+
+  /* Life-area colors */
+  --color-area-study: #7AA7E8;
+  --color-area-work: #F2B05E;
+  --color-area-health: #7FC8A9;
+  --color-area-personal: #B79CE8;
+
+  /* Soft surface tints for life-area blocks & chips (high contrast with --color-text) */
+  --color-area-study-soft: color-mix(in srgb, #7AA7E8 18%, #FFFFFF);
+  --color-area-work-soft: color-mix(in srgb, #F2B05E 20%, #FFFFFF);
+  --color-area-health-soft: color-mix(in srgb, #7FC8A9 20%, #FFFFFF);
+  --color-area-personal-soft: color-mix(in srgb, #B79CE8 18%, #FFFFFF);
+
+  /* Feedback colors */
+  --color-success: #5FB38E;
+  --color-notice: #E8A94B;
+  --color-coral: #E87A6B;
+  --color-success-soft: color-mix(in srgb, #5FB38E 14%, #FFFFFF);
+  --color-coral-soft: color-mix(in srgb, #E87A6B 14%, #FFFFFF);
+
+  /* Navbar backdrop & phone bezel */
+  --color-nav-bg: rgb(250 247 242 / 0.85);
+  --color-phone-bezel: #1F2430;
+  --color-phone-screen: #FAF7F2;
+  --color-phone-card: #FFFFFF;
+
+  /* Radii & Shadows */
+  --radius-card: 20px;
+  --radius-phone: 40px;
+  --shadow-soft: 0 8px 16px rgb(31 36 48 / 0.08);
+  --shadow-phone: 0 12px 28px rgb(31 36 48 / 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #12141A;
+    --color-surface: #1B1E27;
+    --color-text: #ECEEF3;
+    --color-muted: #9AA0AE;
+    --color-divider: #2A2E3A;
+    --color-primary: #7B8FFF;
+    /* Deep ink on #7B8FFF preserves >6:1 contrast in dark mode */
+    --color-on-primary: #12141A;
+
+    --color-area-study-soft: color-mix(in srgb, #7AA7E8 20%, #1B1E27);
+    --color-area-work-soft: color-mix(in srgb, #F2B05E 20%, #1B1E27);
+    --color-area-health-soft: color-mix(in srgb, #7FC8A9 20%, #1B1E27);
+    --color-area-personal-soft: color-mix(in srgb, #B79CE8 20%, #1B1E27);
+
+    --color-success-soft: color-mix(in srgb, #5FB38E 18%, #1B1E27);
+    --color-coral-soft: color-mix(in srgb, #E87A6B 18%, #1B1E27);
+
+    --color-nav-bg: rgb(18 20 26 / 0.85);
+    --color-phone-bezel: #2A2E3A;
+    --color-phone-screen: #12141A;
+    --color-phone-card: #1B1E27;
+
+    --shadow-soft: 0 8px 16px rgb(0 0 0 / 0.28);
+    --shadow-phone: 0 16px 32px rgb(0 0 0 / 0.4);
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-ink: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-divider: var(--color-divider);
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+
+  --color-area-study: var(--color-area-study);
+  --color-area-work: var(--color-area-work);
+  --color-area-health: var(--color-area-health);
+  --color-area-personal: var(--color-area-personal);
+
+  --color-area-study-soft: var(--color-area-study-soft);
+  --color-area-work-soft: var(--color-area-work-soft);
+  --color-area-health-soft: var(--color-area-health-soft);
+  --color-area-personal-soft: var(--color-area-personal-soft);
+
+  --color-success: var(--color-success);
+  --color-notice: var(--color-notice);
+  --color-coral: var(--color-coral);
+  --color-success-soft: var(--color-success-soft);
+  --color-coral-soft: var(--color-coral-soft);
+
+  --color-nav-bg: var(--color-nav-bg);
+  --color-phone-bezel: var(--color-phone-bezel);
+  --color-phone-screen: var(--color-phone-screen);
+  --color-phone-card: var(--color-phone-card);
+
+  --radius-card: var(--radius-card);
+  --radius-phone: var(--radius-phone);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-phone: var(--shadow-phone);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible accessible focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Section entrance animation (fade + 24px rise, 400ms ease-out, once) */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+}
+
+.reveal-section[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero mic gentle breathing: 1.00 to 1.03 over 4s, stops at 10s (2.5 cycles) */
+@keyframes mic-breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.animate-mic-breathe {
+  animation: mic-breathe 4s ease-in-out 2.5;
+  animation-fill-mode: forwards;
+}
+
+/* Calm waveform bars for the hero demo listening phase */
+@keyframes wave-pulse {
+  0%, 100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-wave-bar {
+  transform-origin: center;
+  animation: wave-pulse 900ms ease-in-out infinite;
+}
+
+/* Gentle shimmer bar for the hero demo sorting phase */
+@keyframes sort-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-sort-shimmer {
+  animation: sort-shimmer 1.2s ease-in-out infinite;
+}
+
+/* Subtle horizontal scrollbar hiding for mobile snap carousel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Strict reduced-motion support: replace movement with fades, stop loops */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-section {
+    transform: none;
+    transition: opacity 250ms ease-out;
+  }
+
+  .reveal-section[data-visible="true"] {
+    transform: none;
+  }
+
+  .animate-mic-breathe,
+  .animate-wave-bar,
+  .animate-sort-shimmer {
+    animation: none !important;
+  }
+}

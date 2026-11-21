@@ -1,0 +1,6 @@
+{
+  "name": "Dump & Day",
+  "description": "A calm, voice-first planner. Talk, it sorts, and your day stays calm. No forms. No streaks. No guilt.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
